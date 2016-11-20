@@ -10,7 +10,17 @@ Rails.application.routes.draw do
         end
     end
     namespace :account do
-        resources :products
+        resources :products do
+            member do
+                post :add_to_cart
+            end
+        end
     end
+    resources :carts do
+        collection do
+            delete :clean
+        end
+    end
+    resources :cart_items
     root 'landingpage#index'
 end
