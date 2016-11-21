@@ -18,9 +18,11 @@ Rails.application.routes.draw do
     end
     resources :carts do
         collection do
+            post :checkout
             delete :clean
         end
     end
     resources :cart_items
+    resources :orders
     root 'landingpage#index'
 end
