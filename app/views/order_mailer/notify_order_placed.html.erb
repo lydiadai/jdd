@@ -2,6 +2,7 @@
   <div class="container">
   <div class="col-md-12">
     <h2 class="text-center">订单明细</h2>
+    <small><%= link_to("订单链接",order_url(@order.token)) %></small>
     <table class="table table-bordered">
       <thead>
         <tr>
@@ -31,38 +32,33 @@
 
     <h2 class="text-center">寄送资讯</h2>
     <table class="table table-striped table-bordered">
-      <thead>
-        <tr>
-          <td colspan="2">订购信息</td>
-          <td colspan="2">收货信息</td>
-        </tr>
-      </thead>
       <tbody>
         <tr>
           <td>
-            <%= @order.billing_name %>
+            订购人
           </td>
+          </tr>
+          <tr>
           <td>
+            <%= @order.billing_name %>
+            -
             <%= @order.billing_address %>
           </td>
+          </tr>
+          <tr>
+          <td>
+            收货人
+          </td>
+          </tr>
+          <tr>
           <td>
             <%= @order.shipping_name %>
-          </td>
-          <td>
+            -
             <%= @order.shipping_address %>
           </td>
         </tr>
       </tbody>
     </table>
-    <br>
-    <% if !@order.is_paid? %>
-    <br>
-    <%= link_to("支付宝付款",pay_with_alipay_order_path(@order.token),method: :post,class:" btn btn-danger btn-lg pull-right") %>
-
-    <%= link_to("微信付款",pay_with_wechat_order_path(@order.token),method: :post,class:" btn btn-danger btn-lg pull-right") %>
-    <% else %>
-    <h3 class="content1 gray pull-right">已付款</h3>
-    <% end %>
   </div>
 </div>
 </div>
