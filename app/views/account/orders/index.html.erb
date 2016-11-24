@@ -1,0 +1,33 @@
+  <div class="container">
+<table class="table table-bordered">
+  <% @orders.each do |order| %>
+  <thead>
+    <tr>
+      <td>#</td>
+      <td>订单名称</td>
+      <td>创建时间</td>
+      <td>订单状态</td>
+      <td colspan=2 class="text-center">操作</td>
+    </tr>
+  </thead>
+  <tr>
+    <td><%= order.id %></td>
+    <td><%= link_to(order.token,order_path(order.token)) %></td>
+    <td><%= order.created_at %></td>
+    <td><%= order.aasm_state %></td>
+    <td>
+      <% if order.is_cancel == false%>
+      <%= link_to("申请取消订单",apply_to_cancel_order_path(order),method: :post) %>
+      <% else %>
+      订单已取消
+      <% end %>
+    </td>
+    <td class="text-center">
+      <%= link_to account_order_path(order.id),method: :delete do %>
+      <i class="fa fa-trash"></i>
+      <% end %>
+    </td>
+  </tr>
+  <% end %>
+</table>
+</div>
