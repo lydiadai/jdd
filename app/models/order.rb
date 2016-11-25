@@ -14,6 +14,8 @@
 #  token            :string
 #  is_paid          :boolean          default(FALSE)
 #  payment_method   :string
+#  aasm_state       :string           default("order_placed")
+#  is_cancel        :boolean          default(FALSE)
 #
 
 class Order < ApplicationRecord
@@ -35,7 +37,9 @@ class Order < ApplicationRecord
     def pay!
         update_columns(is_paid: true)
     end
+
     include AASM
+
     aasm do
         state :order_placed, initial: true
         state :paid
@@ -43,13 +47,14 @@ class Order < ApplicationRecord
         state :shipped
         state :order_cancelled
         state :good_returned
+
         event :make_payment, after_commit: :pay! do
             transitions from: :order_placed, to: :paid
         end
         event :ship do
             transitions from: :paid, to: :shipping
         end
-        event :delever do
+        event :deliver do
             transitions from: :shipping, to: :shipped
         end
         event :return_good do

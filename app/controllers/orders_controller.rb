@@ -42,6 +42,7 @@ class OrdersController < ApplicationController
     def apply_to_cancel
         @order = Order.find(params[:id])
         flash[:notice] = '已提交申请'
+        OrderMailer.notify_apply_cancel(@order).deliver!
         redirect_to :back
     end
 
