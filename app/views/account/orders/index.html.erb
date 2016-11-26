@@ -1,6 +1,6 @@
   <div class="container">
 <table class="table table-bordered">
-  <% @orders.each do |order| %>
+
   <thead>
     <tr>
       <td>#</td>
@@ -10,6 +10,8 @@
       <td colspan=2 class="text-center">操作</td>
     </tr>
   </thead>
+  <tbody>
+    <% @orders.each do |order| %>
   <tr>
     <td><%= order.id %></td>
     <td><%= link_to(order.token,order_path(order.token)) %></td>
@@ -29,5 +31,6 @@
     </td>
   </tr>
   <% end %>
+</tbody>
 </table>
 </div>
