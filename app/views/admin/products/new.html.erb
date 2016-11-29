@@ -6,7 +6,8 @@
       <%= f.input :description %>
       <%= f.input :quantity %>
       <%= f.input :price %>
-      <%= f.input :image, as: :file %>
+      <%= f.label :avatar,label:"上传多张图片" %>
+      <%= f.file_field :avatar, :multiple => true, name:"photos[avatar][]" %>
       <%= f.input :is_hidden %>
       <%= f.submit "提交商品" %>
     <% end %>

@@ -16,6 +16,7 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  is_admin               :boolean          default(FALSE)
+#  is_vip                 :boolean          default(FALSE)
 #
 
 require 'test_helper'

@@ -6,11 +6,14 @@
       <%= f.input :description %>
       <%= f.input :quantity %>
       <%= f.input :price %>
-      <% if @product.image.present? %>
+      <% if @product.photos.present? %>
       <span>目前商品图片</span>
-      <%= image_tag(@product.image.thumb.url) %>
+      <% @product.photos.each do |p| %>
+      <%= image_tag p.avatar.thumb.url %>
       <% end %>
-      <%= f.input :image, as: :file %>
+      <% end %>
+      <%= f.label :avatar,label:"上传多张图片" %>
+      <%= f.file_field :avatar, :multiple => true, name:"photos[avatar][]" %>
       <%= f.input :is_hidden %>
       <%= f.submit "提交商品" %>
     <% end %>
