@@ -14,9 +14,9 @@ class Admin::ProductsController < ApplicationController
     def create
         @product = Product.new(product_params)
         if @product.save
-            unless params[:photos].nil?
+            if params[:photos] != nil?
                 params[:photos]['avatar'].each do |a|
-                    @photo = @product.photoss.create(avatar: a)
+                    @photo = @product.photos.create(avatar: a)
                 end
             end
             flash[:notice] = '添加成功'
@@ -32,7 +32,7 @@ class Admin::ProductsController < ApplicationController
 
     def update
         @product = Product.find(params[:id])
-        if !params[:photo].nil?
+        if  params[:photos] != nil?
             @product.photos.destroy_all
             params[:photos]['avatar'].each do |a|
                 @picture = @product.photos.create(avatar: a)
