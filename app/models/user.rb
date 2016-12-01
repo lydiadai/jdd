@@ -17,6 +17,7 @@
 #  updated_at             :datetime         not null
 #  is_admin               :boolean          default(FALSE)
 #  is_vip                 :boolean          default(FALSE)
+#  role                   :integer
 #
 
 class User < ApplicationRecord
@@ -25,7 +26,42 @@ class User < ApplicationRecord
     devise :database_authenticatable, :registerable,
            :recoverable, :rememberable, :trackable, :validatable
     has_many :orders
+    enum role: { user: 0, vip: 1, admin: 2 }
+    after_initialize :set_default_role, if: :new_record?
+    def set_default_role
+        self.role ||= :user
+    end
+
     def admin?
-        is_admin
+        self.role == 'admin'
+        is_admin == true
+    end
+
+    def is_user?
+        self.role = 'user'
+    end
+
+    # def vip?
+    # self.role = 'vip'
+    # end
+
+    def qunlified_admin?
+        role == 'admin' && is_admin
+    end
+
+    def unqunlified_admin?
+        role == 'user' && !is_admin
+    end
+
+    def approve!
+        self.role = 'admin'
+        self.is_admin = true
+        save
+    end
+
+    def cancel!
+        self.role = 'user'
+        self.is_admin = false
+        save
     end
 end

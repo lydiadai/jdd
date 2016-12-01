@@ -8,6 +8,10 @@
     <%= f.input :email,label:"邮箱", required: true, autofocus: true %>
     <%= f.input :password,label:"密码",required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
     <%= f.input :password_confirmation,label:"确认密码", required: true %>
+    <%= f.radio_button(:role,"user") %>
+    <%= label(:role,"用户注册") %>
+    <%= f.radio_button(:role,"admin") %>
+    <%= label(:role,"管理员注册") %>
   </div>
 
   <div class="form-actions">
