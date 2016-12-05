@@ -1,3 +1,4 @@
+<div class="container">
 <div class="col-md-2 col-md-offset-10">
 <%= link_to("清空购物车",clean_carts_path,method: :delete,class:"btn btn-lg btn-red") %>
 </div>
@@ -16,8 +17,8 @@
     <tr>
       <td>
         <%= link_to account_product_path(cart_item.product) do %>
-        <% if product.photos.present? %>
-        <%= image_tag(product.photos[0].avatar.thumb.url, class:"thumbnail") %>
+        <% if cart_item.product.photos.present? %>
+        <%= image_tag(cart_item.product.photos[0].avatar.thumb.url, class:"thumbnail") %>
         <% else %>
         <%= image_tag("http://placehold.it/200x200&text = No Pic",class:"thumbnail") %>
         <% end %>
@@ -58,4 +59,5 @@
 <div class="col-md-3 col-md-offset-10">
 <hr>
 <%= link_to("确认结账",checkout_carts_path,method: :post,class:"btn btn-lg btn-orange")%>
+</div>
 </div>

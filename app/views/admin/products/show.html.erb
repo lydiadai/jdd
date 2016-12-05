@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fuild">
 <div class="row">
   <div class="col-md-6">
     <% if @photos.present? %>
@@ -12,10 +12,11 @@
     <% end %>
     </div>
     <% else %>
-    <%= image_tag("http://placehold.it/200x200&text = No Pic",class:"thumbnail") %>
+    <%= image_tag("http://placehold.it/400x400&text = No Pic",class:"thumbnail") %>
     <% end %>
   </div>
-  <div class="col-md-6">
+
+  <div class="col-md-6 show1">
     <h2><%= @product.title %></h2>
     <div style="height: 100px;">
       <p>
