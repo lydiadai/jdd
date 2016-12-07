@@ -50,11 +50,10 @@ class User < ApplicationRecord
     end
 
     def unqunlified_admin?
-        role == 'user' && !is_admin
+        role == 'admin' && !is_admin
     end
 
     def approve!
-        self.role = 'admin'
         self.is_admin = true
         save
     end

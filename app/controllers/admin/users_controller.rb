@@ -3,7 +3,7 @@ class Admin::UsersController < ApplicationController
     before_action :require_is_admin
     layout 'admin'
     def index
-        @users = User.all
+        @users = User.where(role: 'admin').order('is_admin ASC')
     end
 
     def approve_admin
