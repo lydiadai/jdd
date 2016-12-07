@@ -1,23 +1,24 @@
 <div class="row">
-  <div class="col-md-12 body">
-    <h2 class="text-center">购物车</h2>
+  <div class="col-md-12 col-md-offset-1 body2" id="main">
+    <h2 class="col-md-offset-7">购物车</h2>
+
     <% if current_cart.cart_items.present?%>
     <%= render "cindex" %>
     <% else %>
-    <div class="col-md-6 col-md-offset-2 content1">
-    <h4 class="gray">
-    您的购物车里没有任何宝贝，赶快去行动吧～
-  </h4>
-  <h4>
-    <%=link_to("去看看",account_products_path)%>
-</h4>
-    <h4>
-    或者
-    </h4>
-    <h4>
-    <%=link_to("查看我的订单",account_orders_path)%>
-  </h4>
-  </div>
+    <div class="col-md-offset-2">
+<div class="empty well">
+  	  <h3 class="text-center">您的购物车是空的</h3>
+
+      <button class="empty1">
+        <%= link_to("去逛逛",account_products_path) %>
+      </button>
+      <button class="empty2">
+        <%=link_to("查看历史订单",account_orders_path)%>
+      </button>
+
+</div>
+</div>
     <% end %>
-  </div>
+</div>
+
 </div>

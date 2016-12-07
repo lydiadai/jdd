@@ -2,7 +2,7 @@
 <div class="col-md-2 col-md-offset-10">
 <%= link_to("清空购物车",clean_carts_path,method: :delete,class:"btn btn-lg btn-red") %>
 </div>
-<table class="table table-bordered">
+<table class="table table-bordered well1">
   <thead>
     <tr>
       <th width="400">商品资讯</th>
@@ -51,6 +51,7 @@
     <% end %>
   </tbody>
 </table>
+
 <div class="col-md-2 col-md-offset-10">
 <h4 class="total pull-right">
 总计：<%= render_cart_total_price(current_cart)%>RMB
