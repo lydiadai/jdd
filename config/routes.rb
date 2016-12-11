@@ -5,6 +5,8 @@ Rails.application.routes.draw do
         resources :users do
             post :approve_admin
             post :cancel_admin
+            post :approve_vip
+            post :cancel_vip
         end
         resources :orders do
             member do

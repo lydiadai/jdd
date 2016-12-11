@@ -41,9 +41,18 @@ class User < ApplicationRecord
         self.role = 'user'
     end
 
-    # def vip?
-    # self.role = 'vip'
-    # end
+    def vip?
+        self.role = 'vip'
+        is_vip == true
+    end
+
+    def qunlified_vip?
+        role == 'vip' && is_admin
+    end
+
+    def unqunlified_vip?
+        role == 'vip' && !is_admin
+    end
 
     def qunlified_admin?
         role == 'admin' && is_admin
@@ -58,9 +67,14 @@ class User < ApplicationRecord
         save
     end
 
-    def cancel!
+    def approv!
+        self.is_vip = true
+        save
+    end
+
+    def cance!
         self.role = 'user'
-        self.is_admin = false
+        self.is_vip = false
         save
     end
 end

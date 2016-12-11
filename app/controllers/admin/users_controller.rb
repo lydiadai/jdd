@@ -3,7 +3,8 @@ class Admin::UsersController < ApplicationController
     before_action :require_is_admin
     layout 'admin'
     def index
-        @users = User.where(role: 'admin').order('is_admin ASC')
+        @vip_users = User.where(role: 'vip').order('is_vip ASC')
+        @admin_users = User.where(role: 'admin').order('is_admin ASC')
     end
 
     def approve_admin
@@ -15,6 +16,18 @@ class Admin::UsersController < ApplicationController
     def cancel_admin
         @user = User.find(params[:user_id])
         @user.cancel!
+        redirect_to :back
+    end
+
+    def approve_vip
+        @user = User.find(params[:user_id])
+        @user.approv!
+        redirect_to :back
+    end
+
+    def cancel_vip
+        @user = User.find(params[:user_id])
+        @user.cance!
         redirect_to :back
     end
 end

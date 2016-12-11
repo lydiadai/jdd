@@ -2,38 +2,6 @@
   <h2 class="text-center">人员管理</h2>
   <br>
   <br>
-  <table class="table table-responsive">
-    <thead>
-      <tr>
-        <th>用户id</th>
-        <th>用户邮箱</th>
-        <th>用户角色</th>
-        <th>状态</th>
-        <th>审批</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @users.each do |user| %>
-      <tr>
-        <td><%= user.id %></td>
-        <td><%= user.email %></td>
-        <td><%= user.role %></td>
-        <td>
-          <% if user.qunlified_admin? %>
-          已通过审核
-          <% else %>
-          未通过审核
-          <% end %>
-        </td>
-        <td>
-          <% if user.unqunlified_admin? %>
-          <%= link_to("批准成为管理员", admin_user_approve_admin_path(user),:method => :post)%>
-          <% else %>
-          <%= link_to("取消管理员身份", admin_user_cancel_admin_path(user),:method => :post)%>
-          <% end %>
-       </td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <%= render partial: "admin"%>
+  <%= render partial: "vip" %>
 </div>
