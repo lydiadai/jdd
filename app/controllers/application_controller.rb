@@ -7,6 +7,13 @@ class ApplicationController < ActionController::Base
             redirect_to root_path
         end
     end
+
+    def require_is_vip
+        unless current_user.vip?
+            flash[:alert] = '您不是商家，不可操作！'
+            redirect_to root_path
+        end
+    end
     helper_method :current_cart
     def current_cart
         @current_cart ||= find_cart
