@@ -47,11 +47,11 @@ class User < ApplicationRecord
     end
 
     def qunlified_vip?
-        role == 'vip' && is_admin
+        role == 'vip' && is_vip
     end
 
     def unqunlified_vip?
-        role == 'vip' && !is_admin
+        role == 'vip' && !is_vip
     end
 
     def qunlified_admin?
@@ -67,9 +67,17 @@ class User < ApplicationRecord
         save
     end
 
+    def cancel!
+        self.role = 'user'
+        self.is_admin = false
+        save
+    end
+
     def approv!
         self.is_vip = true
         save
+        # update_column(:is_vip, true)
+        #  save
     end
 
     def cance!

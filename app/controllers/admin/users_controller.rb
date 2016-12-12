@@ -23,7 +23,7 @@ class Admin::UsersController < ApplicationController
         @user = User.find(params[:user_id])
         @user.approv!
         redirect_to :back
-    end
+end
 
     def cancel_vip
         @user = User.find(params[:user_id])
